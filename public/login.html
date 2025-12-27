@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login | SMP Swasta Permata Bangsa</title>
+    <link rel="stylesheet" href="/public/styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="header" role="banner">
+        <div class="header__inner">
+          <img
+            class="header__logo"
+            src="/public/assets/logo-left.svg"
+            alt="Logo Sekolah"
+            width="92"
+            height="92"
+            data-logo-slot="left"
+          />
+
+          <div class="header__title">
+            <h1 class="header__h1">SMP SWASTA PERMATA BANGSA</h1>
+            <p class="header__subtitle">Berkarakter, Berwawasan, Beriman</p>
+            <div class="header__logos" id="allLogos" aria-label="Logo Sekolah"></div>
+          </div>
+
+          <img
+            class="header__logo"
+            src="/public/assets/logo-right.svg"
+            alt="Logo Sekolah"
+            width="92"
+            height="92"
+            data-logo-slot="right"
+          />
+        </div>
+      </header>
+
+      <main class="main" role="main">
+        <section class="content" aria-label="Halaman Login">
+          <div class="content__inner">
+            <div class="panel panel--photo">
+              <img
+                class="photo"
+                src="/image/home.jpeg"
+                alt="Foto Gedung Sekolah"
+              />
+            </div>
+
+            <div class="panel panel--login">
+              <div class="loginCard" role="region" aria-label="Form Login">
+                <h2 class="loginCard__title">Login</h2>
+
+                <form class="form" method="post" action="/login" novalidate>
+                  <label class="field">
+                    <span class="field__label">Username</span>
+                    <input
+                      class="field__input"
+                      type="text"
+                      name="username"
+                      placeholder="Username"
+                      autocomplete="username"
+                      required
+                    />
+                  </label>
+
+                  <label class="field">
+                    <span class="field__label">Password</span>
+                    <input
+                      class="field__input"
+                      type="password"
+                      name="password"
+                      placeholder="Password"
+                      autocomplete="current-password"
+                      required
+                    />
+                  </label>
+
+                  <button class="btn btn--primary" type="submit">Login</button>
+                </form>
+
+                <p class="hint">
+                  Gunakan akun Sistem Informasi Sekolah untuk masuk.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer" role="contentinfo">
+        <div class="footer__inner">
+          <div class="footerItem">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
+                <path
+                  d="M7 3h4l2 5-2.5 1.5c1.2 2.4 3.1 4.3 5.5 5.5L18 14l5 2v4c0 1.1-.9 2-2 2C11.6 22 2 12.4 2 3c0-1.1.9-2 2-2h3Z"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </span>
+            <span class="footerItem__text">083143968441</span>
+          </div>
+
+          <div class="footerItem">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
+                <path
+                  d="M4 6h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                />
+                <path
+                  d="m4 8 8 6 8-6"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </span>
+            <span class="footerItem__text">sekolahpermatasari@gmail.com</span>
+          </div>
+
+          <div class="footerItem">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
+                <path
+                  d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Z"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                />
+                <path
+                  d="M16.5 11.8c.1 2-1.6 3.7-3.6 3.7s-3.7-1.7-3.6-3.7c.1-1.8 1.6-3.3 3.4-3.4 2-.1 3.7 1.6 3.8 3.4Z"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                />
+                <path
+                  d="M18.2 5.9h.01"
+                  stroke="currentColor"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </span>
+            <span class="footerItem__text">sekolah_permatasaribangsa</span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      (async () => {
+        try {
+          const response = await fetch("/api/logos", { cache: "no-store" });
+          if (!response.ok) return;
+
+          const data = await response.json();
+          const logos = Array.isArray(data?.logos) ? data.logos : [];
+          if (!logos.length) return;
+
+          const left = document.querySelector('[data-logo-slot="left"]');
+          const right = document.querySelector('[data-logo-slot="right"]');
+          const strip = document.getElementById("allLogos");
+
+          if (left && logos[0]?.url) left.src = logos[0].url;
+          if (right && logos[1]?.url) right.src = logos[1].url;
+
+          if (strip) {
+            strip.innerHTML = "";
+            for (const logo of logos) {
+              const img = document.createElement("img");
+              img.className = "miniLogo";
+              img.src = logo.url;
+              img.alt = logo.name || "Logo Sekolah";
+              img.loading = "lazy";
+              strip.appendChild(img);
+            }
+          }
+        } catch {
+          // ignore
+        }
+      })();
+    </script>
+  </body>
+</html>
