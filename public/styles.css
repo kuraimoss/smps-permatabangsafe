@@ -57,7 +57,7 @@ body {
   max-width: 1180px;
   margin: 0 auto 14px;
   display: grid;
-  grid-template-columns: 230px 1fr 230px;
+  grid-template-columns: 260px 1fr 260px;
   align-items: center;
   gap: 18px;
   padding: 10px 14px;
@@ -66,11 +66,13 @@ body {
 .header__left {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 .header__center {
   text-align: center;
+  padding: 0 10px;
+  min-width: 0;
 }
 
 .header__right {
@@ -78,15 +80,15 @@ body {
 }
 
 .header__logo {
-  width: 76px;
-  height: 76px;
+  width: 92px;
+  height: 92px;
   object-fit: contain;
   filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.35));
 }
 
 .header__h1 {
   margin: 0;
-  font-size: 34px;
+  font-size: clamp(22px, 2.4vw, 34px);
   letter-spacing: 0.6px;
   font-weight: 800;
   line-height: 1.1;
@@ -283,12 +285,12 @@ body {
   }
 
   .header__inner {
-    grid-template-columns: 160px 1fr 160px;
+    grid-template-columns: 220px 1fr 220px;
   }
 
   .header__logo {
-    width: 70px;
-    height: 70px;
+    width: 72px;
+    height: 72px;
   }
 
   .header__h1 {
@@ -304,17 +306,42 @@ body {
   }
 }
 
+@media (max-width: 720px) {
+  .header__inner {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 8px 10px;
+  }
+
+  .header__left {
+    justify-content: center;
+  }
+
+  .header__right {
+    display: none;
+  }
+
+  .header__logo {
+    width: 64px;
+    height: 64px;
+  }
+
+  .footer__inner {
+    width: min(100%, 560px);
+    gap: 14px 18px;
+  }
+}
+
 @media (max-width: 520px) {
   .header {
     padding-top: 18px;
   }
 
   .header__inner {
-    grid-template-columns: 64px 1fr 64px;
+    grid-template-columns: 1fr;
   }
 
   .loginCard {
     padding: 18px 16px 14px;
   }
 }
-:root {
