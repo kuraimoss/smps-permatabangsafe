@@ -1,7 +1,6 @@
 const Hapi = require("@hapi/hapi");
 const Inert = require("@hapi/inert");
 const Path = require("path");
-const Fs = require("fs/promises");
 
 const createServer = async () => {
   const server = Hapi.server({
@@ -52,44 +51,6 @@ const createServer = async () => {
         listing: false,
         index: false,
       },
-    },
-  });
-
-  server.route({
-    method: "GET",
-    path: "/image/{param*}",
-    handler: {
-      directory: {
-        path: Path.join(__dirname, "image"),
-        listing: false,
-        index: false,
-      },
-    },
-  });
-
-  server.route({
-    method: "GET",
-    path: "/api/logos",
-    handler: async (request, h) => {
-      const imageDir = Path.join(__dirname, "image");
-      const allowedExt = new Set([".png", ".jpg", ".jpeg", ".webp", ".svg"]);
-
-      let entries = [];
-      try {
-        entries = await Fs.readdir(imageDir, { withFileTypes: true });
-      } catch {
-        return h.response({ logos: [] }).code(200);
-      }
-
-      const logos = entries
-        .filter((entry) => entry.isFile())
-        .map((entry) => entry.name)
-        .filter((name) => allowedExt.has(Path.extname(name).toLowerCase()))
-        .filter((name) => !/^home\./i.test(name))
-        .sort((a, b) => a.localeCompare(b, "id"))
-        .map((name) => ({ name, url: `/image/${encodeURIComponent(name)}` }));
-
-      return h.response({ logos }).code(200);
     },
   });
 
