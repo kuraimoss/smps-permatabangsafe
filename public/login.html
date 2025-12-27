@@ -12,26 +12,23 @@
         <div class="header__inner">
           <img
             class="header__logo"
-            src="/public/assets/logo-left.svg"
-            alt="Logo Sekolah"
+            src="/image/Logo%20SMPS%20Permata%20Bangsa.png"
+            alt="Logo SMP Swasta Permata Bangsa"
             width="92"
             height="92"
-            data-logo-slot="left"
           />
 
           <div class="header__title">
             <h1 class="header__h1">SMP SWASTA PERMATA BANGSA</h1>
             <p class="header__subtitle">Berkarakter, Berwawasan, Beriman</p>
-            <div class="header__logos" id="allLogos" aria-label="Logo Sekolah"></div>
           </div>
 
           <img
             class="header__logo"
-            src="/public/assets/logo-right.svg"
-            alt="Logo Sekolah"
+            src="/image/logo%20yayasan%20.jpeg"
+            alt="Logo Yayasan"
             width="92"
             height="92"
-            data-logo-slot="right"
           />
         </div>
       </header>
@@ -149,39 +146,5 @@
         </div>
       </footer>
     </div>
-
-    <script>
-      (async () => {
-        try {
-          const response = await fetch("/api/logos", { cache: "no-store" });
-          if (!response.ok) return;
-
-          const data = await response.json();
-          const logos = Array.isArray(data?.logos) ? data.logos : [];
-          if (!logos.length) return;
-
-          const left = document.querySelector('[data-logo-slot="left"]');
-          const right = document.querySelector('[data-logo-slot="right"]');
-          const strip = document.getElementById("allLogos");
-
-          if (left && logos[0]?.url) left.src = logos[0].url;
-          if (right && logos[1]?.url) right.src = logos[1].url;
-
-          if (strip) {
-            strip.innerHTML = "";
-            for (const logo of logos) {
-              const img = document.createElement("img");
-              img.className = "miniLogo";
-              img.src = logo.url;
-              img.alt = logo.name || "Logo Sekolah";
-              img.loading = "lazy";
-              strip.appendChild(img);
-            }
-          }
-        } catch {
-          // ignore
-        }
-      })();
-    </script>
   </body>
 </html>
