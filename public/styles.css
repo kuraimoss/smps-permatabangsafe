@@ -54,10 +54,10 @@ body {
 }
 
 .header__inner {
-  max-width: 1180px;
+  max-width: 1400px;
   margin: 0 auto 14px;
   display: grid;
-  grid-template-columns: 260px 1fr 260px;
+  grid-template-columns: 340px 1fr 340px;
   align-items: center;
   gap: 18px;
   padding: 10px 14px;
@@ -80,18 +80,19 @@ body {
 }
 
 .header__logo {
-  width: 92px;
-  height: 92px;
+  width: 150px;
+  height: 150px;
   object-fit: contain;
   filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.35));
 }
 
 .header__h1 {
   margin: 0;
-  font-size: clamp(22px, 2.4vw, 34px);
-  letter-spacing: 0.6px;
+  font-size: 34px;
+  letter-spacing: 0.4px;
   font-weight: 800;
   line-height: 1.1;
+  white-space: nowrap;
 }
 
 .header__subtitle {
@@ -284,15 +285,6 @@ body {
     gap: 24px;
   }
 
-  .header__inner {
-    grid-template-columns: 220px 1fr 220px;
-  }
-
-  .header__logo {
-    width: 72px;
-    height: 72px;
-  }
-
   .header__h1 {
     font-size: 24px;
   }
@@ -306,7 +298,7 @@ body {
   }
 }
 
-@media (max-width: 720px) {
+@media (max-width: 1100px) {
   .header__inner {
     grid-template-columns: 1fr;
     gap: 10px;
@@ -319,11 +311,6 @@ body {
 
   .header__right {
     display: none;
-  }
-
-  .header__logo {
-    width: 64px;
-    height: 64px;
   }
 
   .footer__inner {
@@ -339,6 +326,10 @@ body {
 
   .header__inner {
     grid-template-columns: 1fr;
+  }
+
+  .header__h1 {
+    font-size: 20px;
   }
 
   .loginCard {
