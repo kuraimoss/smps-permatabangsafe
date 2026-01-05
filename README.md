@@ -29,6 +29,7 @@ npm start
 
 Server berjalan di:
 - `http://localhost:3000`
+- Halaman info pendaftaran: `http://localhost:3000/` atau `http://localhost:3000/info-pendaftaran`
 - Halaman login: `http://localhost:3000/login`
 
 ## Struktur Folder
@@ -46,4 +47,3 @@ Server berjalan di:
 set PORT=3001
 npm start
 ```
-

@@ -14,7 +14,15 @@ const createServer = async () => {
   server.route({
     method: "GET",
     path: "/",
-    handler: (request, h) => h.redirect("/login"),
+    handler: (request, h) =>
+      h.file(Path.join(__dirname, "..", "public", "info-pendaftaran.html")),
+  });
+
+  server.route({
+    method: "GET",
+    path: "/info-pendaftaran",
+    handler: (request, h) =>
+      h.file(Path.join(__dirname, "..", "public", "info-pendaftaran.html")),
   });
 
   server.route({
